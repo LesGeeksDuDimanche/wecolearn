@@ -1,0 +1,42 @@
+<template name="Search">
+  <form class="searchForm" action="">
+    <div class="inputContainer" id="inputContainer">
+    <input id="searchInput" name="searchInput" type="text" value="" placeholder="Recherche" autocomplete="off">
+    </div>
+    <input name="searchCity" type="text" placeholder="Ville">
+    <input type="submit" name="searchbutton" value="Chercher">
+  </form>
+</template>
+
+
+<template name="searchPage">
+  {{> header}}
+  {{> Search}}
+  <div id="noMatchMessage" >
+    <p>No match... results in {{city}}</p>
+  </div>
+  <div class="viewSearchContainer">
+    <div class="pseudoContainer">
+     <p>  {{pseudo}} </p>
+    </div>
+    <div class="photoContainer">
+     <p> {{photo}} </p>
+    </div>
+    <div class="cityContainer">
+     <p> {{city}} </p>
+    </div>
+    <div class="TagsContainer">
+     <p>{{Tags}}</p>
+    </div>
+    <div class="bioContainer">
+     <p> {{Bio}}</p>
+    </div>
+    <button name="contact" id="contact" >  Envoyer un message. </button>
+  {{> next}}
+  </div>
+</template>
+
+
+<template name="next">
+  <button name="nextSearch" id="nextSearch" >  >> </button>
+</template>

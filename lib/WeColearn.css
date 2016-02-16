@@ -1,0 +1,78 @@
+/* CSS declarations go here */
+.hidden{
+  display: none;
+}
+
+#noMatchMessage{
+  display: none;
+}
+
+.editProfil{
+  display: none;
+}
+
+
+.tagDiv{
+  cursor:default;
+}
+
+#tags{
+  width: 80vw;
+  height: 17vh;
+  overflow:hidden;
+  float:left;
+}
+
+.tagUl{
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+.tagLi{
+  background-color: grey;
+  display:block;
+  float:left;
+  margin-top: 0.25vh;
+  margin-bottom:0.25vh;
+  margin-right: 0.5vw;
+  margin-left: 0.5vw;
+  height: 3.5vh;
+}
+.tagsContainer{
+  width: 80vw;
+  height: 17vh;
+  border: solid grey 1px;
+  border-radius: 4px;
+  overflow:hidden;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+.profilPseudo{
+  background-color: rgba(255, 255, 0, 0.4);
+  width: 15vw;
+  height:60vh;
+  float:left;
+  margin-left: 10vw;
+}
+.messagesContainer{
+  background-color: rgba(255, 255, 0, 0.5);
+  width: 60vw;
+  height: 60vh;
+  float:left;
+  overflow-y: scroll;
+}
+
+.messageProfilLi{
+  height: 6vh;
+  width: 15vh;
+
+}
+
+.messagePseudoDiv{
+  height: 6vh;
+}
+#selectedPseudoNameMessage{
+  background: rgba(255, 255, 0, 0.4);
+}

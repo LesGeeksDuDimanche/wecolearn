@@ -1,0 +1,41 @@
+
+
+
+<template name="ProfilPage">
+  {{> header}}
+  <div><h1>Profil</h1></div>
+  <div class="profilContainer" id="profilContainer">
+    <div class="profilCategoryTitle"><p>Pseudo :</p></div>
+    <div><p> {{pseudo}} </p></div><br>
+    <div class="profilCategoryTitle"><p> Photo </p></div>
+    <div><p> {{photo}} </p></div> <br>
+    <div class="profilCategoryTitle"><p>Ville :</p></div>
+    <div><p> {{city}} </p></div> <br>
+    <div class="profilCategoryTitle"><p>Je veux apprendre à :</p></div>
+    <div><p> {{Tags}} </p></div> <br>
+    <div class="profilCategoryTitle"><p>Ce que vous faites dans la vie :</p></div>
+    <div><p> {{Bio}} </p></div> <br>
+  </div>
+  <form class="profilForm {{hiddenForm}}" action="">
+  <label for="Pseudo">Pseudo</label>
+  <input type="text" name="pseudo" id="pseudo"> <br>
+  <label for="photo">Photo</label>
+  <input type="text" name="photo" id="photo"> <br>
+  <label for="city">Ville</label>
+  <input type="text" name="city" id="city"> <br>
+  <label for="tags">Tags</label>
+  <div class="tagsContainer" id="tagsContainer">
+  <div type="text" name="tags" id="tags" contenteditable="true"></div>
+  </div>
+  <label for="biography">Biographie</label>
+  <textarea type="text" name="biography" id="biography"></textarea>
+  <input type="submit" value="envoyer">
+  </form>
+  <button id="editProfil">Editer votre profil</button>
+  <button id="editFirstTime">first Edit</button>
+</template>
+
+
+<template name="ProfilLink">
+  <a href="{{pathFor route='ProfilPage'}}">Profil</a>
+</template>

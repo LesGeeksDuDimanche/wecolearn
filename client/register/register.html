@@ -1,0 +1,17 @@
+
+
+
+
+<template name="registerLink">
+  <a href="{{pathFor route='registerPage'}}">Inscription</a>
+</template>
+
+<template name="registerPage">
+    {{> header}}
+    <h2>Inscription</h2>
+    <form class="register">
+        <p>Email: <input type="email" name="email"></p>
+        <p>Mot de passe: <input type="password" name="password"></p>
+        <p><input type="submit" value="Register"></p>
+    </form>
+</template>

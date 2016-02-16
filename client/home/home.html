@@ -1,0 +1,14 @@
+<template name="HomePage">
+  <body>
+        {{> header}}
+      <div class="container">
+    <h1>Que souhaitez-vous apprendre ? </h1>
+        {{> Search}}
+        <div id="example1"></div>
+      </div>
+  </body>
+</template>
+
+<template name="HomeLink">
+  <a href="{{pathFor route='HomePage'}}">Home</a>
+</template>
