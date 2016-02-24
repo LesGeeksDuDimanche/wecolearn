@@ -31,7 +31,7 @@ Template.Search.events({
 
         Session.set('currentProfil', profil);
         Session.set('currentSearch', profils );
-        Session.set('currentTagSearch', tags);
+        // Session.set('currentTagSearch', tags);
         $('#noMatchMessage').hide();
       } else {
       console.log('no match !');
@@ -71,6 +71,7 @@ Template.Search.events({
        }
       },
   'input #searchInput': function (event) {
+    Meteor.myFunctions.clearTagSuggestions('.tagDiv');
     var input = event.currentTarget.value;
     console.log("input" + input);
     input = input.split("");
@@ -98,9 +99,14 @@ Template.Search.events({
 
 Template.searchPage.rendered = function() {
       if (Session.get('currentProfil') && Session.get('currentProfil') !== '') {
-      console.log("onrendered : " + Session.get('currentProfil'));
-      Meteor.myFunctions.loadProfil(Session.get('currentProfil') ,Session.get('currentTagSearch'));
-      Session.set('SearchCount', 1);
+      Meteor.myFunctions.loadProfil(Session.get('currentProfil'));
+      Session.set('SearchCount', 0);
+      $('#previousSearch').hide();
+      var profils = Session.get('currentSearch');
+      console.log(profils[1]);
+        if (!profils[1]) {
+          $('#nextSearch').hide();
+        }
       } else {
       $('#noMatchMessage').show();
       }
@@ -113,23 +119,42 @@ Template.searchPage.events({
       var count = Session.get('SearchCount');
       console.log("count : " + count);
       var profils = Session.get('currentSearch');
+      if(profils[count + 1]) {
+          count = count + 1;
+          Session.set('currentProfil', profils[count]);
+          console.log(profils[count].pseudo);
+          Meteor.myFunctions.loadProfil(profils[count]);
+      }
+      else {
+        $('#nextSearch').hide();
+
+      }
+      Session.set('SearchCount', count);
+      $('#previousSearch').show();
+
+    },
+    "click #previousSearch" : function() {
+      var count = Session.get('SearchCount');
+      console.log("count : " + count);
+      if (count === 0) {
+        $('#previousSearch').hide();
+      } else {
+      count = count - 1;
+      Session.set('SearchCount', count);
+      var profils = Session.get('currentSearch');
       if(profils[count]) {
           Session.set('currentProfil', profils[count]);
           console.log(profils[count].pseudo);
-          var tags = "";
-          ProfilTags.find({userId: profils[count].userId}).forEach(function(tagObject) {
-              tags += tagObject.tag + " ";
-          });
-          Session.set('currentTagSearch', tags);
-          Meteor.myFunctions.loadProfil(profils[count], Session.get('currentTagSearch'));
+          Meteor.myFunctions.loadProfil(profils[count]);
       }
       else if (Session.get('currentProfil')){
         console.log(Session.get('currentProfil'));
-        loadProfil(Session.get('currentProfil'), Session.get('currentTagSearch'));
+        loadProfil(Session.get('currentProfil'));
       }
-      count = count + 1;
-      Session.set('SearchCount', count);
+      }
+      $('#nextSearch').show();
     },
+
     "click #contact" : function() {
       Router.go('MessagesPage');
     }

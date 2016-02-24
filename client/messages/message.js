@@ -3,6 +3,7 @@
 Template.MessagesPage.rendered = function() {
 
   Meteor.subscribe("profil", function() {
+  Session.set("currentUser", Profil.findOne({userId: Meteor.userId()}).pseudo);
   Meteor.subscribe("discussions", function() {
 
     Meteor.myFunctions.loadMessagePage();

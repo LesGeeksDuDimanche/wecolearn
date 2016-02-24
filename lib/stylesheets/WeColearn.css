@@ -1,4 +1,10 @@
 /* CSS declarations go here */
+
+body{
+  padding-top: 20px;
+}
+
+
 .hidden{
   display: none;
 }
@@ -7,9 +13,6 @@
   display: none;
 }
 
-.editProfil{
-  display: none;
-}
 
 
 .tagDiv{
@@ -47,32 +50,4 @@
   overflow:hidden;
   margin-left: 10vw;
   margin-right: 10vw;
-}
-
-.profilPseudo{
-  background-color: rgba(255, 255, 0, 0.4);
-  width: 15vw;
-  height:60vh;
-  float:left;
-  margin-left: 10vw;
-}
-.messagesContainer{
-  background-color: rgba(255, 255, 0, 0.5);
-  width: 60vw;
-  height: 60vh;
-  float:left;
-  overflow-y: scroll;
-}
-
-.messageProfilLi{
-  height: 6vh;
-  width: 15vh;
-
-}
-
-.messagePseudoDiv{
-  height: 6vh;
-}
-#selectedPseudoNameMessage{
-  background: rgba(255, 255, 0, 0.4);
 }

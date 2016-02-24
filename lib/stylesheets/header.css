@@ -1,0 +1,33 @@
+
+.navbar-default .navbar-nav > li > a{
+  color: rgba(244, 211, 0, 1);
+  text-decoration: none;
+}
+
+.navbar-default, .navbar-toggle, .navbar-default .navbar-collapse{
+  background-color: rgba(231, 82, 69, 1);
+  border-color: rgba(231, 82, 69, 0.7);
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+  background-color: rgba(231, 82, 69, 1);
+}
+.navbar-default .navbar-brand, .navbar-default .navbar-toggle .icon-bar{
+  color: rgba(244, 211, 0, 1);
+
+}
+
+.navbar-default .navbar-toggle{
+  border-color: rgba(244, 211, 0, 1);
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+  background-color:  rgba(244, 211, 0, 1);
+}
+
+/*.active{
+  background-color: rgba(231, 82, 69, 0.9);
+}*/
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: rgba(200, 50, 50, 0.9);
+    color :  rgba(244, 211, 0, 1);
+}

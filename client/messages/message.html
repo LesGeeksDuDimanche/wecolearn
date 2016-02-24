@@ -1,19 +1,23 @@
 
-<template name="MessagesLink">
-  <a href="{{pathFor route='MessagesPage'}}">Messages</a>
-</template>
+<!-- <template name="MessagesLink">
+</template> -->
 
 <template name="MessagesPage">
-  {{> header}}
-  <h1>Messages</h1>
-  <div class="profilPseudo" id="profilPseudo">
-  </div>
-  <div class="messagesContainer" id="messagesContainer">
-  </div>
-  <div class="textInputContainer">
-    <form action="">
-    <div class="newMessageContainer"><input type="text" name="newMessage"></div>
-    <div class=""><input type="submit" value="Envoyer"></div>
-    </form>
+  <div class="container">
+    {{> header}}
+    <div class="messageAndPseudoContainer">
+      <div class="profilPseudo" id="profilPseudo">
+      </div>
+      <div class="messageAndInputContainer">
+      <div class="messagesContainer" id="messagesContainer">
+      </div>
+      <div class="textInputContainer">
+        <form id="inputMessageForm" action="">
+        <div class="newMessageContainer"><input id="newMessageInput" type="text" name="newMessage"></div>
+        <div class="submitMessage"><input type="submit" value="Envoyer"></div>
+        </form>
+      </div>
+      </div>
+    </div>
   </div>
 </template>

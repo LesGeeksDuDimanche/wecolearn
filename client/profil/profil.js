@@ -26,12 +26,10 @@ Template.ProfilPage.events({
           }
       });
 
-      console.log(ProfilCreated);
 
       if(userId !== null && ProfilCreated === false) {
 
       // Insert a profile into the collection
-        console.log(tags);
         Profil.insert({
           userId: userId,
           pseudo: pseudo,
@@ -43,71 +41,29 @@ Template.ProfilPage.events({
 
 
 
-      } else {
-        console.log("edited");
-        var object = Profil.findOne({userId: Meteor.userId()});
-
-          Profil.update(
-            {
-              _id: object._id
-            },
-            {
-              $set: {
-                pseudo: pseudo,
-                photo: photo,
-                city: city,
-                Biography: bio
-              }
-            }
-          );
-
-        // delete profil-linked tags in database
-        ProfilTags.find({userId: Meteor.userId()}).forEach(function(object){
-          console.log("is it deleting ?");
-          ProfilTags.remove({_id: object._id});
-        });
-
-
-
       }
 
       // Insert profil-linked tags in database
-        tagListArray.forEach(function(tag) {
-              ProfilTags.insert({
-                userId: userId,
-                tag: tag
-              });
-        });
+      tagListArray.forEach(function(tag) {
+          ProfilTags.insert({
+            userId: userId,
+            tag: tag
+          });
+      });
 
-      // Clear form
-      event.target.pseudo.value = "";
-      event.target.photo.value = "";
-      event.target.city.value = "";
-      event.target.biography.value = "";
-      $('.tagUl').remove();
-
-      // hide form
-      Session.set('hiddenform', 'hidden');
-
-      // show button
-      $('#editProfil').show();
-      $('#profilContainer').show();
+      // hide edit
+      Meteor.myFunctions.hideProfilEditSubmit();
+      $('#submitProfilEditForm').hide();
 
 
       // refresh/load profil
       var profil = Profil.findOne({userId: Meteor.userId()});
-      console.log(profil.pseudo);
-      var tags = "";
-      ProfilTags.find({userId: Meteor.userId()}).forEach(function(object) {
-          tags += object.tag + " ";
-      });
-      console.log(tags);
 
-      Meteor.myFunctions.loadProfil(profil, tags);
+      Meteor.myFunctions.loadProfil(profil);
 
 
 
-      // tag in databse
+      // tag in database
       tagListArray.forEach(function(tags) {
       //See if tag exists already
         var TagExists = false;
@@ -127,17 +83,9 @@ Template.ProfilPage.events({
       });
 
     },
-    "click #editProfil" : function() {
-        Session.set('hiddenform', '');
-        $('#editProfil').hide();
-        $('#editFirstTime').hide();
-        $('#profilContainer').hide();
-    },
     "click #editFirstTime" : function() {
-        Session.set('hiddenform', '');
-        $('#editProfil').hide();
-        $('#editFirstTime').hide();
-        $('#profilContainer').hide();
+        Meteor.myFunctions.showProfilSubmitForm();
+
     },
     "input #tags" : function(event) {
       console.log($('#tags').text());
@@ -157,26 +105,126 @@ Template.ProfilPage.events({
             Meteor.myFunctions.deleteLastList();
           }
       });
-    }
-  });
+    },
+
+// Edit City
+
+    "click #editCity" : function (event) {
+      Meteor.myFunctions.hideProfilEditSubmit();
+        $('.profilCity').hide();
+        $('#editCity').hide();
+        $('#profilCityEdit').show();
+        $('#profilCityEditSubmit').show();
+        $('#cancelProfilCityEditSubmit').show();
+    },
+    "click #profilCityEditSubmit": function () {
+
+        Meteor.myFunctions.cityProfilEdit();
+
+    },
+    "click #cancelProfilCityEditSubmit": function () {
+
+        Meteor.myFunctions.hideProfilEditSubmit();
+
+    },
+
+// Edit Photo
+
+    "click #editPhoto" : function (event) {
+      Meteor.myFunctions.hideProfilEditSubmit();
+        $('.profilPhoto').hide();
+        $('#editPhoto').hide();
+        $('#profilPhotoEdit').show();
+        $('#profilPhotoEditSubmit').show();
+        $('#cancelProfilPhotoEditSubmit').show();
+    },
+    "click #profilPhotoEditSubmit": function () {
+
+        Meteor.myFunctions.photoProfilEdit();
+
+    },
+    "click #cancelProfilPhotoEditSubmit": function () {
+
+        Meteor.myFunctions.hideProfilEditSubmit();
+
+    },
+
+// Edit Pseudo
+
+    "click #editPseudo" : function (event) {
+      Meteor.myFunctions.hideProfilEditSubmit();
+        $('#profilPseudo').hide();
+        $('#editPseudo').hide();
+        $('#profilPseudoEdit').show();
+        $('#profilPseudoEditSubmit').show();
+        $('#cancelProfilPseudoEditSubmit').show();
+    },
+    "click #profilPseudoEditSubmit": function () {
+
+        Meteor.myFunctions.pseudoProfilEdit();
+
+    },
+    "click #cancelProfilPseudoEditSubmit": function () {
+
+        Meteor.myFunctions.hideProfilEditSubmit();
+
+    },
+
+// Edit Bio
+
+    "click #editBio" : function (event) {
+      Meteor.myFunctions.hideProfilEditSubmit();
+          $('#profilBio').hide();
+          $('#editBio').hide();
+          $('#profilBioEdit').show();
+          $('#profilBioEditSubmit').show();
+          $('#cancelProfilBioEditSubmit').show();
+    },
+    "click #profilBioEditSubmit": function () {
+            Meteor.myFunctions.bioProfilEdit();
+    },
+    "click #cancelProfilBioEditSubmit": function () {
+            Meteor.myFunctions.hideProfilEditSubmit();
+    },
+
+// Edit Tags
+
+    "click #editTags" : function (event) {
+      Meteor.myFunctions.hideProfilEditSubmit();
+          $('#profilTags').hide();
+          $('#editTags').hide();
+          $('#tagsContainer').show();
+          $('#profilTagsEditSubmit').show();
+          $('#cancelProfilTagsEditSubmit').show();
+      Meteor.myFunctions.fillTags();
+    },
+    "click #profilTagsEditSubmit": function () {
+            Meteor.myFunctions.tagsProfilEdit();
+
+    },
+    "click #cancelProfilTagsEditSubmit": function () {
+            Meteor.myFunctions.hideProfilEditSubmit();
+    },
+
+
+
+
+
+});
 
 
 
   Template.ProfilPage.rendered = function() {
-        console.log("profil page");
-        Session.set('hiddenform', 'hidden');
-        if (Profil.findOne({userId: Meteor.userId()})) {
-          console.log("loaded");
-          var tags = "";
-          ProfilTags.find({userId: Meteor.userId()}).forEach(function(object) {
-              console.log(object.tag);
-              tags += object.tag + " ";
-          });
-          console.log(tags);
-          Meteor.myFunctions.loadProfil(Profil.findOne({userId: Meteor.userId()}), tags);
-          $('#editProfil').show();
-          $('#editFirstTime').hide();
-        }
+        Meteor.subscribe("profil", function() {
+          if (Profil.findOne({userId: Meteor.userId()})) {
+            Meteor.myFunctions.loadProfil(Profil.findOne({userId: Meteor.userId()}));
+            $('#editFirstTime').hide();
+            $('#submitProfilEditForm').hide();
+          } else {
+            $('#profilContainer').hide();
+            $('#editFirstTime').show();
+          }
+        });
   };
 
 

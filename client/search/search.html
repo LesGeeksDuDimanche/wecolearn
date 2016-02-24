@@ -1,42 +1,62 @@
 <template name="Search">
-  <form class="searchForm" action="">
-    <div class="inputContainer" id="inputContainer">
+  <form class="row searchForm" action="">
+    <div class="col-xs-4 col-sm-2"></div>
+    <div class="col-xs-4 col-sm-3 inputContainer" id="inputContainer">
     <input id="searchInput" name="searchInput" type="text" value="" placeholder="Recherche" autocomplete="off">
     </div>
-    <input name="searchCity" type="text" placeholder="Ville">
-    <input type="submit" name="searchbutton" value="Chercher">
+    <div class="hiddenOnLargeScreens col-xs-4"></div>
+    <div class="hiddenOnLargeScreens col-xs-4"></div>
+    <div class="col-xs-4 col-sm-3">
+
+    <input id="searchCity" name="searchCity" type="text" placeholder="Ville">
+    </div>
+    <div class="col-xs-4 hiddenOnLargeScreens"></div>
+    <div class="col-xs-4 hiddenOnLargeScreens"></div>
+    <div class="col-xs-4 col-sm-2">
+
+    <input id="searchSubmit" type="submit" name="searchbutton" value="Chercher">
+    </div>
+    <div class="col-xs-4 col-sm-2"></div>
   </form>
 </template>
 
 
 <template name="searchPage">
-  {{> header}}
-  {{> Search}}
-  <div id="noMatchMessage" >
-    <p>No match... results in {{city}}</p>
-  </div>
-  <div class="viewSearchContainer">
-    <div class="pseudoContainer">
-     <p>  {{pseudo}} </p>
+  <div class="containerSearchPage container">
+    {{> header}}
+    <div class="seachContainer" id="searchPageSearchContainer">
+    {{> Search}}
     </div>
-    <div class="photoContainer">
-     <p> {{photo}} </p>
+    <div id="noMatchMessage" >
+      <p>No match... results in {{city}}</p>
     </div>
-    <div class="cityContainer">
-     <p> {{city}} </p>
+    <div class="viewSearchContainer">
+      <div class="pseudoContainer">
+       <p>  {{pseudo}} </p>
+      </div>
+      <div class="photoContainer">
+       <p> {{photo}} </p>
+      </div>
+      <div class="cityContainer">
+       <p> {{city}} </p>
+      </div>
+      <div class="TagsContainer">
+       <p>{{Tags}}</p>
+      </div>
+      <div class="bioContainer">
+       <p> {{Bio}}</p>
+      </div>
+      {{> previous}}
+      <button name="contact" id="contact" >  Envoyer un message. </button>
+      {{> next}}
     </div>
-    <div class="TagsContainer">
-     <p>{{Tags}}</p>
-    </div>
-    <div class="bioContainer">
-     <p> {{Bio}}</p>
-    </div>
-    <button name="contact" id="contact" >  Envoyer un message. </button>
-  {{> next}}
   </div>
 </template>
 
 
 <template name="next">
-  <button name="nextSearch" id="nextSearch" >  >> </button>
+  <button name="nextSearch" id="nextSearch" >  Suivant </button>
+</template>
+<template name="previous">
+  <button name="previousSearch" id="previousSearch" >  Précédent </button>
 </template>

@@ -1,13 +1,29 @@
 <template name="header">
-  <header>
-      {{> HomeLink}}
-    {{#if currentUser}}
-      {{> MessagesLink}}
-      {{> ProfilLink}}
-      {{> Logout}}
-    {{else}}
-      {{> registerLink}}
-      {{> LoginLink}}
-    {{/if}}
-  </header>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        <a class="navbar-brand" href="{{pathFor route='HomePage'}}">Home</a>
+      </div>
+
+      <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              {{#if currentUser}}
+              <li id="HomePageLi"><a href="{{pathFor route='HomePage'}}">Rechercher</a></li>
+              <li id="MessagesPageLi"><a href="{{pathFor route='MessagesPage'}}">Messages</a></li>
+              <li id="ProfilPageLi"><a href="{{pathFor route='ProfilPage'}}">Profil</a></li>
+              <li id="logOutLi"><a href="#" class="logout">Logout</a></li>
+              {{else}}
+              <li id="registerPageLi"><a href="{{pathFor route='registerPage'}}">Inscription</a></li>
+              <li id="loginPageLi"><a href="{{pathFor route='loginPage'}}">Login</a></li>
+              {{/if}}
+            </ul>
+      </div>
+    </div>
+  </nav>
 </template>

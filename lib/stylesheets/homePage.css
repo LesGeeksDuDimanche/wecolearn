@@ -1,0 +1,38 @@
+
+
+body{
+  background-image: url("images/home.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.homeTitle{
+  text-align: center;
+  margin-top: 100px;
+  padding: 20px;
+  background-color:  rgba(231, 82, 69, 0.8);
+  color: rgba(244, 221, 0, 1);
+  border : rgba(255, 93, 83, 0.8) solid 0.5px;
+  border-radius: 4px;
+  border-bottom: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin-bottom: 0px;
+}
+
+#homePageSearchContainer{
+  /*margin-top: 139px;*/
+  padding: 24px 0px;
+  background-color:  rgba(231, 82, 69, 0.8);
+  border : rgba(255, 93, 83, 0.8) solid 0.5px;
+  border-radius: 4px;
+  border-top: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.titleAndSearchContainer{
+  background-color: rgba(244, 201, 0, 0.6);
+  /*border :rgba(244, 221, 0, 1) solid 0.5px;*/
+  /*border-radius: 4px;*/
+}
