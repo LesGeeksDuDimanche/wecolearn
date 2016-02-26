@@ -27,36 +27,41 @@
     <div class="seachContainer" id="searchPageSearchContainer">
     {{> Search}}
     </div>
-    <div id="noMatchMessage" >
-      <p>No match... results in {{city}}</p>
-    </div>
-    <div class="viewSearchContainer">
-      <div class="pseudoContainer">
-       <p>  {{pseudo}} </p>
+      <div class="row MainContainer" id="searchMainContainer">
+        <div class="col-sm-3 searchBorder" id="leftSearchBorder" >
+          <div class="nextOrPreviousContainer nextContainer">
+            <button name="previousSearch" id="previousSearch" >  Précédent </button>
+          </div>
+        </div>
+      <div class="col-sm-6 viewSearchContainer">
+        <div class="photoContainer">
+         <img style="max-width: 80px" src="{{photo}}" alt="">
+        </div>
+        <div class="pseudoContainer">
+         <p>  {{pseudo}} </p>
+        </div>
+        <div class="cityContainer">
+         <p> {{city}} </p>
+        </div>
+        <div class="TagsContainer">
+         <p>{{Tags}}</p>
+        </div>
+        <div class="bioContainer">
+         <p> {{Bio}}</p>
+        </div>
       </div>
-      <div class="photoContainer">
-       <p> {{photo}} </p>
+      <div class="col-sm-3 searchBorder" id="rightSearchBorder" >
+        <div class="contactContainer">
+          <button name="contact" id="contact" >  Envoyer un message. </button>
+        </div>
+        <div class="nextOrPreviousContainer nextContainer">
+          <button name="nextSearch" id="nextSearch" >  Suivant </button>
+        </div>
+
       </div>
-      <div class="cityContainer">
-       <p> {{city}} </p>
+      <div id="noMatchMessage" >
+        <p>No match... results in {{city}}</p>
       </div>
-      <div class="TagsContainer">
-       <p>{{Tags}}</p>
-      </div>
-      <div class="bioContainer">
-       <p> {{Bio}}</p>
-      </div>
-      {{> previous}}
-      <button name="contact" id="contact" >  Envoyer un message. </button>
-      {{> next}}
     </div>
   </div>
-</template>
-
-
-<template name="next">
-  <button name="nextSearch" id="nextSearch" >  Suivant </button>
-</template>
-<template name="previous">
-  <button name="previousSearch" id="previousSearch" >  Précédent </button>
 </template>

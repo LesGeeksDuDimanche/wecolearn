@@ -1,11 +1,4 @@
-.profilMainContainer{
-  display: inline-block;
-  background-color: rgba(231, 82, 69, 0.8);
-  border: rgba(255,0,0,0.4) solid 0.5px;
-  border-radius: 4px;
-  width: 100%;
 
-}
 
 .profilCategoryTitle{
   font-weight: bold;
@@ -13,7 +6,7 @@
 
 .profilContainer{
   background-color: rgba(255, 255, 240, 0.9);
-  height: 574px;
+  height: 750px;;
   padding: 49px 23px;
 }
 
@@ -21,6 +14,10 @@
   height: 60px;
 }
 .profilTagsContainer{
+  height: 200px;
+}
+
+.profilBioContainer{
   height: 200px;
 }
 
@@ -127,7 +124,6 @@
   border: solid grey 1px;
   border-radius: 4px;
   overflow:hidden;
-  margin-left: 20px;
   margin-right: 20px;
   pointer-events: auto;
   background-color: white;
@@ -137,4 +133,8 @@
 
 textarea{
   resize: none;
+}
+
+.profilPhotoContainer{
+  height: 120px;
 }

@@ -3,9 +3,40 @@
 }
 
 .viewSearchContainer{
-  margin-top: 30px;
+  background-color: white;
 }
 
 .containerSearchPage{
   text-align: center;
+}
+
+.searchContainer{
+
+}
+
+.searchBorder{
+
+}
+
+#searchMainContainer{
+  margin-top: 30px;
+}
+
+.photoContainer{
+  height: 100px;
+  margin-top: 20px;
+}
+
+.pseudoContainer{
+  height: 80px;
+}
+
+.cityContainer{
+  height: 80px;
+}
+.contactContainer{
+  margin-top: 20px;
+}
+.nextOrPreviousContainer{
+  height: 300px;
 }

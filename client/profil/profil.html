@@ -4,14 +4,14 @@
 <template name="ProfilPage">
   <div class="container">
     {{> header}}
-    <div class="row profilMainContainer">
+    <div class="row MainContainer">
 
     <div class="col-sm-3 profilBorder" id="leftProfilBorder"></div>
     <div class="col-sm-2 profilContainer" id="profilategoryContainer" >
       <div class="miniProfilContainers profilCategoryTitleContainer">
       <div class="profilCategoryTitle"><p>Pseudo :</p></div>
       </div>
-      <div class="miniProfilContainers profilCategoryTitleContainer">
+      <div class="miniProfilContainers profilCategoryTitleContainer profilPhotoContainer">
       <div class="profilCategoryTitle"><p> Photo :</p></div>
       </div>
       <div class="miniProfilContainers profilCategoryTitleContainer">
@@ -33,8 +33,12 @@
 
       </div>
 
-      <div class="miniProfilContainers profilCategoryContainer profilPhotoContainer"><p class="profilCategory profilPhoto"> {{photo}} </p>
-        <input id="profilPhotoEdit" type="text" name="photo" placeholder="{{photo}}">
+      <div class="miniProfilContainers profilCategoryContainer profilPhotoContainer">
+        <!-- <p class="profilCategory profilPhoto"> {{photo}} </p> -->
+        <img class="profilCategory profilPhoto" style="max-width: 90px" src="{{photo}}" alt="">
+        <input id="profilPhotoEdit" multiple type="file" name="photo" class="file fileInput"/>
+        <!-- {{#with photo}} -->
+        <!-- {{/with}} -->
         <div class="validateProfilChange profilChangeChoice"><a id="profilPhotoEditSubmit" >valider</a></div>
         <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilPhotoEditSubmit" >annuler</a></div>
 
@@ -52,9 +56,9 @@
           <ul id="tagUl" class="tagUl">
             <div type="text" name="tags" id="tags" contenteditable="true" value="{{Tags}}"></div>
           </ul>
+        </div>
           <div class="validateProfilChange profilChangeChoice"><a id="profilTagsEditSubmit" >valider</a></div>
           <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilTagsEditSubmit" >annuler</a></div>
-        </div>
       </div>
 
       <div class="miniProfilContainers profilCategoryContainer profilBioContainer"><p class="profilCategory" id="profilBio"> {{Bio}} </p>
@@ -62,14 +66,16 @@
         <div class="validateProfilChange profilChangeChoice"><a id="profilBioEditSubmit" >valider</a></div>
         <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilBioEditSubmit" >annuler</a></div>
       </div>
-    <input id="submitProfilEditForm" type="submit" value="envoyer">
+      <div class="miniProfilContainers">
+        <input id="submitProfilEditForm" type="submit" value="envoyer">
+      </div>
     </form>
     </div>
     <div class="col-sm-2 profilContainer" id="profilModifyContainer">
       <div class="miniProfilContainers editProfilLinkContainer" id="editPseudoContainer">
         <a class="editProfilLink" id="editPseudo"><p>Modifier</p></a>
       </div>
-      <div class="miniProfilContainers editProfilLinkContainer" id="editPhotoContainer">
+      <div class="miniProfilContainers editProfilLinkContainer profilPhotoContainer" id="editPhotoContainer">
         <a class="editProfilLink" id="editPhoto"><p>Modifier</p></a>
       </div>
       <div class="miniProfilContainers editProfilLinkContainer" id="editCityContainer">

@@ -108,18 +108,20 @@ Template.Search.events({
 
 
 Template.searchPage.rendered = function() {
-      if (Session.get('currentProfil') && Session.get('currentProfil') !== '') {
-      Meteor.myFunctions.loadProfil(Session.get('currentProfil'));
-      Session.set('SearchCount', 0);
-      $('#previousSearch').hide();
-      var profils = Session.get('currentSearch');
-      console.log(profils[1]);
-        if (!profils[1]) {
-          $('#nextSearch').hide();
+      Meteor.subscribe("profil", function() {
+        if (Session.get('currentProfil') && Session.get('currentProfil') !== '') {
+        Meteor.myFunctions.loadProfil(Session.get('currentProfil'));
+        Session.set('SearchCount', 0);
+        $('#previousSearch').hide();
+        var profils = Session.get('currentSearch');
+        console.log(profils[1]);
+          if (!profils[1]) {
+            $('#nextSearch').hide();
+          }
+        } else {
+        $('#noMatchMessage').show();
         }
-      } else {
-      $('#noMatchMessage').show();
-      }
+      });
 };
 
 

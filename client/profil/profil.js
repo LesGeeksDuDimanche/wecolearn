@@ -1,6 +1,18 @@
 
 Template.ProfilPage.events({
 
+    'change .fileInput':function(event,tmpl){
+      FS.Utility.eachFile(event,function(file){
+        var fileObj = new FS.File(file);
+        console.log(fileObj);
+        Uploads.insert(fileObj,function(err, fileObj){
+          console.log(err);
+        console.log(fileObj);
+        Session.set("currentPhotoId", fileObj._id);
+        });
+      });
+    },
+
     "submit .profilForm": function (event) {
 
       // Prevent default browser form submit
@@ -9,7 +21,7 @@ Template.ProfilPage.events({
       // Get value from form element
       var userId = Meteor.userId();
       var pseudo = event.target.pseudo.value;
-      var photo = event.target.photo.value;
+      var photo = Session.get("currentPhotoId");
       var city = event.target.city.value;
       var bio = event.target.biography.value;
       var tagListArray = [];
@@ -253,6 +265,9 @@ Template.ProfilPage.events({
     photo: function () {
       return Session.get("photoValue");
     },
+    // photo: function () {
+    //   return Uploads.findOne();
+    // },
     city: function () {
       return Session.get("cityValue");
     },
