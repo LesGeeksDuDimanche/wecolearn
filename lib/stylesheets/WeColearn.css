@@ -13,41 +13,6 @@ body{
   display: none;
 }
 
-
-
-.tagDiv{
-  cursor:default;
-}
-
-#tags{
-  width: 80vw;
-  height: 17vh;
-  overflow:hidden;
-  float:left;
-}
-
-.tagUl{
-  padding: 0;
-  margin: 0;
-  float: left;
-}
-
-.tagLi{
-  background-color: grey;
-  display:block;
-  float:left;
-  margin-top: 0.25vh;
-  margin-bottom:0.25vh;
-  margin-right: 0.5vw;
-  margin-left: 0.5vw;
-  height: 3.5vh;
-}
-.tagsContainer{
-  width: 80vw;
-  height: 17vh;
-  border: solid grey 1px;
-  border-radius: 4px;
-  overflow:hidden;
-  margin-left: 10vw;
-  margin-right: 10vw;
+a{
+  cursor: pointer;
 }

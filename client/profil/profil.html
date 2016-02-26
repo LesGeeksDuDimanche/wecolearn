@@ -4,52 +4,88 @@
 <template name="ProfilPage">
   <div class="container">
     {{> header}}
-    <form class="profilForm " action="">
-    <div class="profilContainer" id="profilContainer">
+    <div class="row profilMainContainer">
+
+    <div class="col-sm-3 profilBorder" id="leftProfilBorder"></div>
+    <div class="col-sm-2 profilContainer" id="profilategoryContainer" >
+      <div class="miniProfilContainers profilCategoryTitleContainer">
       <div class="profilCategoryTitle"><p>Pseudo :</p></div>
-      <div class="profilCategoryContainer profilPseudoContainer"><p class="profilCategory" id="profilPseudo"> {{pseudo}} </p>
-        <input id="profilPseudoEdit" type="text" name="pseudo" placeholder="{{pseudo}}">
-        <a class="editProfilLink" id="editPseudo"><p>Modifier</p></a>
-        <input id="profilPseudoEditSubmit" type="submit" value="valider">
-        <input id="cancelProfilPseudoEditSubmit" type="submit" value="annuler">
-      </div><br>
-
-      <div class="profilCategoryTitle"><p> Photo </p></div>
-      <div class="profilCategoryContainer profilPhotoContainer"><p class="profilCategory profilPhoto"> {{photo}} </p>
-        <input id="profilPhotoEdit" type="text" name="photo" placeholder="{{photo}}">
-        <a class="editProfilLink" id="editPhoto"><p>Modifier</p></a>
-        <input id="profilPhotoEditSubmit" type="submit" value="valider">
-        <input id="cancelProfilPhotoEditSubmit" type="submit" value="annuler">
-      </div><br>
+      </div>
+      <div class="miniProfilContainers profilCategoryTitleContainer">
+      <div class="profilCategoryTitle"><p> Photo :</p></div>
+      </div>
+      <div class="miniProfilContainers profilCategoryTitleContainer">
       <div class="profilCategoryTitle"><p>Ville :</p></div>
-      <div class="profilCategoryContainer profilCityContainer"><p class="profilCategory profilCity"> {{city}} </p>
-        <input id="profilCityEdit" type="text" name="city" placeholder="{{city}}">
-        <a class="editProfilLink" id="editCity"><p>Modifier</p></a>
-        <input id="profilCityEditSubmit" type="submit" value="valider">
-        <input id="cancelProfilCityEditSubmit" type="submit" value="annuler">
-      </div><br>
-
-      <div class="profilCategoryTitle"><p>Je veux apprendre à :</p></div>
-      <div class="profilCategoryContainer profilTagsContainer"><p class="profilCategory" id="profilTags"> {{Tags}} </p>
-        <div id="tagsContainer" class="tagsContainer">
-        <div type="text" name="tags" id="tags" contenteditable="true" value="{{Tags}}"></div>
-        </div>
-        <a class="editProfilLink" id="editTags"><p>Modifier</p></a>
-        <input id="profilTagsEditSubmit" type="submit" value="valider">
-        <input id="cancelProfilTagsEditSubmit" type="submit" value="annuler">
-      </div><br>
-
-      <div class="profilCategoryTitle"><p>Ce que vous faites dans la vie :</p></div>
-      <div class="profilCategoryContainer profilBioContainer"><p class="profilCategory" id="profilBio"> {{Bio}} </p>
-        <textarea id="profilBioEdit" type="text" name="biography" value="{{Bio}}"></textarea>
-        <a class="editProfilLink" id="editBio"><p>Modifier</p></a>
-        <input id="profilBioEditSubmit" type="submit" value="valider">
-        <input id="cancelProfilBioEditSubmit" type="submit" value="annuler">
-      </div><br>
+      </div>
+      <div class="miniProfilContainers profilCategoryTitleContainer profilTagsContainer">
+      <div class="profilCategoryTitle"><p>Ce que je veux apprendre :</p></div>
+      </div>
+      <div class="miniProfilContainers profilCategoryTitleContainer">
+      <div class="profilCategoryTitle"><p>Ce que je fais dans la vie :</p></div>
+      </div>
     </div>
+    <div class="col-sm-2 profilContainer" id="profilContainer">
+    <form class="profilForm " action="">
+      <div class="miniProfilContainers profilCategoryContainer profilPseudoContainer"><p class="profilCategory" id="profilPseudo"> {{pseudo}} </p>
+        <input id="profilPseudoEdit" type="text" name="pseudo" placeholder="{{pseudo}}">
+        <div class="validateProfilChange profilChangeChoice"><a id="profilPseudoEditSubmit" >valider</a></div>
+        <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilPseudoEditSubmit" >annuler</a></div>
+
+      </div>
+
+      <div class="miniProfilContainers profilCategoryContainer profilPhotoContainer"><p class="profilCategory profilPhoto"> {{photo}} </p>
+        <input id="profilPhotoEdit" type="text" name="photo" placeholder="{{photo}}">
+        <div class="validateProfilChange profilChangeChoice"><a id="profilPhotoEditSubmit" >valider</a></div>
+        <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilPhotoEditSubmit" >annuler</a></div>
+
+
+      </div>
+      <div class="miniProfilContainers profilCategoryContainer profilCityContainer"><p class="profilCategory profilCity"> {{city}} </p>
+        <input id="profilCityEdit" type="text" name="city" placeholder="{{city}}">
+        <div class="validateProfilChange profilChangeChoice"><a id="profilCityEditSubmit" >valider</a></div>
+        <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilCityEditSubmit" >annuler</a></div>
+
+      </div>
+
+      <div class="miniProfilContainers profilCategoryContainer profilTagsContainer"><p class="profilCategory" id="profilTags"> {{Tags}} </p>
+        <div id="tagsContainer" class="tagsContainer">
+          <ul id="tagUl" class="tagUl">
+            <div type="text" name="tags" id="tags" contenteditable="true" value="{{Tags}}"></div>
+          </ul>
+          <div class="validateProfilChange profilChangeChoice"><a id="profilTagsEditSubmit" >valider</a></div>
+          <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilTagsEditSubmit" >annuler</a></div>
+        </div>
+      </div>
+
+      <div class="miniProfilContainers profilCategoryContainer profilBioContainer"><p class="profilCategory" id="profilBio"> {{Bio}} </p>
+        <textarea id="profilBioEdit" type="text" name="biography" rows="5" cols="30" value="{{Bio}}"></textarea>
+        <div class="validateProfilChange profilChangeChoice"><a id="profilBioEditSubmit" >valider</a></div>
+        <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilBioEditSubmit" >annuler</a></div>
+      </div>
     <input id="submitProfilEditForm" type="submit" value="envoyer">
     </form>
+    </div>
+    <div class="col-sm-2 profilContainer" id="profilModifyContainer">
+      <div class="miniProfilContainers editProfilLinkContainer" id="editPseudoContainer">
+        <a class="editProfilLink" id="editPseudo"><p>Modifier</p></a>
+      </div>
+      <div class="miniProfilContainers editProfilLinkContainer" id="editPhotoContainer">
+        <a class="editProfilLink" id="editPhoto"><p>Modifier</p></a>
+      </div>
+      <div class="miniProfilContainers editProfilLinkContainer" id="editCityContainer">
+        <a class="editProfilLink" id="editCity"><p>Modifier</p></a>
+      </div>
+      <div class="miniProfilContainers editProfilLinkContainer profilTagsContainer" id="editTagsContainer">
+        <a class="editProfilLink" id="editTags"><p>Modifier</p></a>
+      </div>
+      <div class="miniProfilContainers editProfilLinkContainer" id="editBioContainer">
+        <a class="editProfilLink" id="editBio"><p>Modifier</p></a>
+      </div>
+    </div>
+    <div class="col-sm-3 profilBorder" id="rightProfilBorder"></div>
+
     <button id="editFirstTime">first Edit</button>
+    </div>
   </div>
 </template>
 

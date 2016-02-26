@@ -91,7 +91,17 @@ Template.Search.events({
   },
   'blur #searchInput': function(event) {
     setTimeout(function(){Meteor.myFunctions.clearTagSuggestions('.tagDiv');}, 100);
-  }
+  },
+   'focus #searchInput' : function(event) {
+     $('#searchInput').keydown(function (e) {
+       if ($('.tagDiv')) {
+         var key = e.which || e.keyCode;
+         if (key === 40) {
+
+         }
+       }
+     });
+   }
 
 });
 

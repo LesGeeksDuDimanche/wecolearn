@@ -1,8 +1,45 @@
-.profilContainer{
-  background-color: rgba(255, 255, 240, 0.9);
-  padding: 55px;
+.profilMainContainer{
+  display: inline-block;
+  background-color: rgba(231, 82, 69, 0.8);
   border: rgba(255,0,0,0.4) solid 0.5px;
   border-radius: 4px;
+  width: 100%;
+
+}
+
+.profilCategoryTitle{
+  font-weight: bold;
+}
+
+.profilContainer{
+  background-color: rgba(255, 255, 240, 0.9);
+  height: 574px;
+  padding: 49px 23px;
+}
+
+.miniProfilContainers{
+  height: 60px;
+}
+.profilTagsContainer{
+  height: 200px;
+}
+
+.profilChangeChoice{
+  display: inline-block;
+  padding-top: 10px;
+}
+
+#profilBio{
+  display:inline-block;
+  white-space: nowrap;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
+  width: 150px;
+}
+#profilTags{
+  width: 170px;
+  position: relative;
+  z-index: 6;
 }
 
 #editPseudo, #profilPseudo, .profilCategory, .editProfilLink{
@@ -12,13 +49,12 @@
 .editProfilLink{
   font-size: 12px;
   padding-left: 22px;
-  cursor: default;
+  cursor: pointer;
 }
 
-#tags{
-  background: white;
+.editProfilLinkContainer{
+  text-align: left;
 }
-
 
 #profilCityEdit, #profilCityEditSubmit, #cancelProfilCityEditSubmit{
   display: none;
@@ -32,6 +68,10 @@
   display: none;
 }
 
+#profilBioEdit, #profilPhotoEdit, #profilCityEdit, #profilPseudoEdit{
+  z-index: 6;
+  position: relative;
+}
 #profilBioEdit, #profilBioEditSubmit, #cancelProfilBioEditSubmit{
   display: none;
 }
@@ -49,4 +89,52 @@
 
 #submitProfilEditForm{
   display: none;
+}
+
+.tagDiv{
+  cursor:default;
+}
+
+#tags{
+  background: white;
+  width: 100px;
+  height: 35px;
+  float:left;
+  outline: none;
+  padding-top: 5px;
+}
+
+.tagUl{
+  padding: 0;
+  margin: 0;
+  float: left;
+  background-color: white;
+}
+
+.tagLi{
+  background-color: grey;
+  display:block;
+  float:left;
+  margin-top: 5px;
+  margin-bottom:5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 25px;
+  padding: 2px;
+}
+.tagsContainer{
+  width: 300px;
+  border: solid grey 1px;
+  border-radius: 4px;
+  overflow:hidden;
+  margin-left: 20px;
+  margin-right: 20px;
+  pointer-events: auto;
+  background-color: white;
+  z-index: 6;
+  position: relative;
+}
+
+textarea{
+  resize: none;
 }

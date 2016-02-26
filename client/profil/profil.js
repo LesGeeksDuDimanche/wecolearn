@@ -92,7 +92,9 @@ Template.ProfilPage.events({
       Session.set("tagInput", $('#tags').text());
     },
     "focus #tags" : function(event) {
-      $('#tags').keydown(function (e) {
+      $('#tags').keyup(function (e) {
+          e.preventDefault();
+          e.stopPropagation();
           var key = e.which || e.keyCode;
           if (key === 13 || key === 32) { // 13 is enter, 32 is space
             var value = Session.get("tagInput");
@@ -106,6 +108,16 @@ Template.ProfilPage.events({
           }
       });
     },
+    "click .tagLi" : function(event) {
+      console.log("tagLi");
+      event.stopPropagation();
+    },
+    "click #tagsContainer" : function(event) {
+      // Session.get()
+      $('#tags').focus();
+      console.log("tagsContainer");
+    },
+
 
 // Edit City
 
@@ -170,22 +182,6 @@ Template.ProfilPage.events({
 
     },
 
-// Edit Bio
-
-    "click #editBio" : function (event) {
-      Meteor.myFunctions.hideProfilEditSubmit();
-          $('#profilBio').hide();
-          $('#editBio').hide();
-          $('#profilBioEdit').show();
-          $('#profilBioEditSubmit').show();
-          $('#cancelProfilBioEditSubmit').show();
-    },
-    "click #profilBioEditSubmit": function () {
-            Meteor.myFunctions.bioProfilEdit();
-    },
-    "click #cancelProfilBioEditSubmit": function () {
-            Meteor.myFunctions.hideProfilEditSubmit();
-    },
 
 // Edit Tags
 
@@ -206,6 +202,22 @@ Template.ProfilPage.events({
             Meteor.myFunctions.hideProfilEditSubmit();
     },
 
+    // Edit Bio
+
+        "click #editBio" : function (event) {
+          Meteor.myFunctions.hideProfilEditSubmit();
+              $('#profilBio').hide();
+              $('#editBio').hide();
+              $('#profilBioEdit').show();
+              $('#profilBioEditSubmit').show();
+              $('#cancelProfilBioEditSubmit').show();
+        },
+        "click #profilBioEditSubmit": function () {
+                Meteor.myFunctions.bioProfilEdit();
+        },
+        "click #cancelProfilBioEditSubmit": function () {
+                Meteor.myFunctions.hideProfilEditSubmit();
+        },
 
 
 
@@ -224,6 +236,8 @@ Template.ProfilPage.events({
             $('#profilContainer').hide();
             $('#editFirstTime').show();
           }
+          Meteor.myFunctions.checkIfNeedsScroll('#profilTags', 160);
+
         });
   };
 
