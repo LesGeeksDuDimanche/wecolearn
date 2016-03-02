@@ -3,14 +3,15 @@
     <div class="col-xs-4 col-sm-2"></div>
     <div class="col-xs-4 col-sm-3 inputContainer" id="inputContainer">
     <input id="searchInput" name="searchInput" type="text" value="" placeholder="Recherche" autocomplete="off">
-    <div class="suggestionsContainer" id="suggestionsContainer">
+    <div class="suggestionsContainer" id="tagSuggestionsContainer">
     </div>
     </div>
     <div class="hiddenOnLargeScreens col-xs-4"></div>
     <div class="hiddenOnLargeScreens col-xs-4"></div>
-    <div class="col-xs-4 col-sm-3">
-
-    <input id="searchCity" name="searchCity" type="text" placeholder="Ville">
+    <div class="col-xs-4 col-sm-3 inputContainer" id="cityInputContainer" >
+    <input id="searchCity" name="searchCity" type="text" placeholder="Ville"  autocomplete="off">
+    <div class="suggestionsContainer" id="citySuggestionsContainer">
+    </div>
     </div>
     <div class="col-xs-4 hiddenOnLargeScreens"></div>
     <div class="col-xs-4 hiddenOnLargeScreens"></div>
@@ -31,7 +32,7 @@
     </div>
       <div class="row MainContainer" id="searchMainContainer">
         <div class="col-sm-3 searchBorder" id="leftSearchBorder" >
-          <div class="nextOrPreviousContainer nextContainer">
+          <div class="nextOrPreviousContainer previousContainer">
             <button name="previousSearch" id="previousSearch" >  Précédent </button>
           </div>
         </div>
@@ -39,23 +40,24 @@
         <div class="photoContainer">
          <img style="max-width: 80px" src="{{photo}}" alt="">
         </div>
+        <div class="contactContainer">
+          <a name="contact" id="contact" ><p>  Contacter</p> </a>
+        </div>
         <div class="pseudoContainer">
-         <p>  {{pseudo}} </p>
+         <p id="pseudoSearchParagraphe">  {{pseudo}} </p>
         </div>
         <div class="cityContainer">
          <p> {{city}} </p>
         </div>
         <div class="TagsContainer">
-         <p>{{Tags}}</p>
+         <p>Intéressé d'apprendre : {{Tags}}</p>
         </div>
         <div class="bioContainer">
-         <p> {{Bio}}</p>
+          <p>Biographie : </p>
+         <p class="biographie"> {{Bio}}</p>
         </div>
       </div>
       <div class="col-sm-3 searchBorder" id="rightSearchBorder" >
-        <div class="contactContainer">
-          <button name="contact" id="contact" >  Envoyer un message. </button>
-        </div>
         <div class="nextOrPreviousContainer nextContainer">
           <button name="nextSearch" id="nextSearch" >  Suivant </button>
         </div>

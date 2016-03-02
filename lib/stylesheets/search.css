@@ -8,14 +8,19 @@
   padding: 5px;
 }
 
-.tagDiv{
-  background-color: rgba(255, 255, 255, 0.95);
+.tagDiv, .cityDiv{
+  background-color: rgba(230, 230, 230, 0.95);
   text-align: left;
   padding: 5px;
   color: grey;
   height: 30px;
-
 }
+
+.tagDiv:hover, .cityDiv:hover{
+  background-color: rgba(210, 210, 210, 1);
+  color: darkgrey;
+}
+
 
 #searchCity{
   float: left;
@@ -55,6 +60,10 @@
   border-bottom-right-radius: 4px;
   padding-top: 3px;
   margin-top: -3px;
+}
+
+#homePageSearchContainer{
+  height: 100px;
 }
 
 

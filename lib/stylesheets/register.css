@@ -1,0 +1,21 @@
+.registerContainer{
+  background-color: rgba(231, 82, 69, 0.95);
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.register{
+  display: inline-block;
+}
+.registerTitleContainer{
+  padding: 42px 82px;
+  background-color: rgba(244,201,0,1);
+  color: rgba(231, 82, 69, 0.95);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.registerCategoryDiv{
+  height: 46px;
+  padding: 19px;
+}

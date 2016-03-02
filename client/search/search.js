@@ -71,9 +71,8 @@ Template.Search.events({
        }
       },
   'input #searchInput': function (event) {
-    Meteor.myFunctions.clearTagSuggestions('.tagDiv');
+    Meteor.myFunctions.clearSuggestions('.tagDiv');
     var input = event.currentTarget.value;
-    console.log("input" + input);
     input = input.split("");
     TagDb.find().forEach(function(object){
       var splittedTag = object.tag.split("");
@@ -83,14 +82,13 @@ Template.Search.events({
           break;
         }
         if(i===2 && splittedTag[i] === input[i]) {
-          Meteor.myFunctions.createTagSuggestion(object.tag);
-          console.log("createTagSuggestion");
+          Meteor.myFunctions.createSuggestion(object.tag, '#tagSuggestionsContainer', 'tagDiv', '#searchInput');
         }
       }
     });
   },
   'blur #searchInput': function(event) {
-    setTimeout(function(){Meteor.myFunctions.clearTagSuggestions('.tagDiv');}, 100);
+    setTimeout(function(){Meteor.myFunctions.clearSuggestions('.tagDiv');}, 100);
   },
    'focus #searchInput' : function(event) {
      $('#searchInput').keydown(function (e) {
@@ -101,7 +99,20 @@ Template.Search.events({
          }
        }
      });
-   }
+   },
+   "input #searchCity" : function(event) {
+     Meteor.myFunctions.clearSuggestions('.cityDiv');
+     var input = event.currentTarget.value;
+     console.log("input searchCity", input);
+
+     if (input !== "") {
+       Meteor.myFunctions.findCityAC(input);
+     }
+    //  console.log(results);
+
+
+   },
+
 
 });
 

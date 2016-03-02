@@ -3,7 +3,10 @@
 }
 
 .viewSearchContainer{
-  background-color: white;
+  background-color: rgba(240,240,240,0.9);
+  margin-top: 21px;
+  margin-bottom: 21px;
+  height: 471px;
 }
 
 .containerSearchPage{
@@ -25,18 +28,53 @@
 .photoContainer{
   height: 100px;
   margin-top: 20px;
+  width: 100px;
+  /*display: inline-block;*/
+  float: left;
 }
 
 .pseudoContainer{
   height: 80px;
+  display: inline-block;
 }
 
 .cityContainer{
   height: 80px;
 }
 .contactContainer{
-  margin-top: 20px;
-}
+  margin-top: 18px;
+  width: 49px;
+  float: right;
+  margin-right: 45px;}
 .nextOrPreviousContainer{
-  height: 300px;
+  height: 214px;
+  vertical-align: middle;
+  margin-top: 259px;
+}
+.nextContainer{
+  text-align: left;
+}
+.previousContainer{
+  text-align: right;
+}
+
+#pseudoSearchParagraphe{
+  text-align: center;
+  vertical-align: bottom;
+  line-height: 126px;
+  font-size: 35px;
+}
+.TagsContainer{
+  text-align: left;
+  margin-left: 17px;
+}
+
+.bioContainer{
+  text-align: left;
+  margin-left: 16px;
+  margin-top: 28px;
+}
+
+.biographie{
+  text-align: center;
 }

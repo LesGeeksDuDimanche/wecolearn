@@ -16,8 +16,8 @@ Template.MessagesPage.rendered = function() {
 Template.MessagesPage.events({
     'submit form': function(event){
       event.preventDefault();
-      Meteor.myFunctions.clearTagSuggestions('.messageDateDiv');
-      Meteor.myFunctions.clearTagSuggestions('.messageDiv');
+      Meteor.myFunctions.clearSuggestions('.messageDateDiv');
+      Meteor.myFunctions.clearSuggestions('.messageDiv');
       var newMessage = $('[name=newMessage]').val();
       var userPseudo = Profil.findOne({userId: Meteor.userId()}).pseudo;
       var user2Pseudo = Session.get("pseudoValue");

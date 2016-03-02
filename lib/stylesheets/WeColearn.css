@@ -2,6 +2,7 @@
 
 body{
   padding-top: 20px;
+  background-color: rgba(231, 82, 69, 0.95);
 }
 
 
@@ -19,7 +20,7 @@ a{
 
 .MainContainer{
   display: inline-block;
-  background-color: rgba(231, 82, 69, 0.8);
+  background-color: rgba(231, 82, 69, 0.95);
   border: rgba(255,0,0,0.4) solid 0.5px;
   border-radius: 4px;
   width: 100%;
