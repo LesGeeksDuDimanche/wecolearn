@@ -14,7 +14,7 @@
       <div class="miniProfilContainers profilCategoryTitleContainer profilPhotoContainer">
       <div class="profilCategoryTitle"><p> Photo :</p></div>
       </div>
-      <div class="miniProfilContainers profilCategoryTitleContainer">
+      <div class="miniProfilContainers profilCategoryTitleContainer profilCityContainer">
       <div class="profilCategoryTitle"><p>Ville :</p></div>
       </div>
       <div class="miniProfilContainers profilCategoryTitleContainer profilTagsContainer">
@@ -45,6 +45,8 @@
 
       </div>
       <div class="miniProfilContainers profilCategoryContainer profilCityContainer"><p class="profilCategory profilCity"> {{city}} </p>
+        <div id="geolocationChoiceContainer"><input id="geolocationChoice" type="checkbox" name="geolocalize">
+        Use geolocation for more precise location.</div>
         <input id="profilCityEdit" type="text" name="city" placeholder="{{city}}">
         <div class="validateProfilChange profilChangeChoice"><a id="profilCityEditSubmit" >valider</a></div>
         <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilCityEditSubmit" >annuler</a></div>
@@ -78,7 +80,7 @@
       <div class="miniProfilContainers editProfilLinkContainer profilPhotoContainer" id="editPhotoContainer">
         <a class="editProfilLink" id="editPhoto"><p>Modifier</p></a>
       </div>
-      <div class="miniProfilContainers editProfilLinkContainer" id="editCityContainer">
+      <div class="miniProfilContainers editProfilLinkContainer profilCityContainer" id="editCityContainer">
         <a class="editProfilLink" id="editCity"><p>Modifier</p></a>
       </div>
       <div class="miniProfilContainers editProfilLinkContainer profilTagsContainer" id="editTagsContainer">

@@ -21,6 +21,10 @@
   height: 200px;
 }
 
+.profilCityContainer{
+  height: 110px;
+}
+
 .profilChangeChoice{
   display: inline-block;
   padding-top: 10px;
@@ -53,7 +57,7 @@
   text-align: left;
 }
 
-#profilCityEdit, #profilCityEditSubmit, #cancelProfilCityEditSubmit{
+#profilCityEdit, #profilCityEditSubmit, #cancelProfilCityEditSubmit, #geolocationChoiceContainer{
   display: none;
 }
 
@@ -99,6 +103,7 @@
   float:left;
   outline: none;
   padding-top: 5px;
+  text-align: left;
 }
 
 .tagUl{
@@ -136,5 +141,12 @@ textarea{
 }
 
 .profilPhotoContainer{
-  height: 120px;
+  height: 152px;
+}
+.profilCity{
+  display: block;
+}
+
+#geolocationChoice{
+  display: inline-block;
 }

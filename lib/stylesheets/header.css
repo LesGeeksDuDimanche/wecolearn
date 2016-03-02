@@ -31,3 +31,10 @@
     background-color: rgba(200, 50, 50, 0.9);
     color :  rgba(244, 211, 0, 1);
 }
+
+#logoLinkAndContainer{
+  padding-top: 0;
+}
+#logo{
+  max-height: 50px;
+}
