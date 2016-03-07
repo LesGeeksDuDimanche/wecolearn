@@ -5,10 +5,13 @@
 }
 
 .profilContainer{
-  background-color: rgba(255, 255, 240, 0.9);
+  background-color: rgba(255, 240, 120, 0.9);
   height: 750px;;
   padding: 49px 23px;
   margin: 10px 0;
+}
+#profilContainer, #profilModifyContainer{
+  background-color: rgba(255, 255, 240, 0.9);
 }
 
 .miniProfilContainers{
@@ -58,7 +61,7 @@
   text-align: left;
 }
 
-#profilCityEdit, #profilCityEditSubmit, #cancelProfilCityEditSubmit, #geolocationChoiceContainer{
+#profilCityEdit, #profilCityEditSubmit, #cancelProfilCityEditSubmit, #geolocationChoiceContainer, #profilCityEditContainer{
   display: none;
 }
 
@@ -73,6 +76,7 @@
 #profilBioEdit, #profilPhotoEdit, #profilCityEdit, #profilPseudoEdit{
   z-index: 6;
   position: relative;
+  margin-left: 7px;
 }
 #profilBioEdit, #profilBioEditSubmit, #cancelProfilBioEditSubmit{
   display: none;
@@ -80,6 +84,7 @@
 
 #tagsContainer, #profilTagsEditSubmit, #cancelProfilTagsEditSubmit{
   display: none;
+  margin-left:15px;
 }
 
 
@@ -150,4 +155,24 @@ textarea{
 
 #geolocationChoice{
   display: inline-block;
+}
+
+#sendAnswerForm{
+  width: 100%;
+  margin-top: 619px;
+  padding: 9px;
+}
+
+#profilPseudoEdit, #profilCityEdit{
+  margin-left: 14px;
+}
+
+#geolocationChoiceContainer{
+  margin-left:93px;
+  width:100%;
+  z-index:5;
+  position:relative;
+}
+.profilCategoryTitleContainer{
+  text-align: right;
 }

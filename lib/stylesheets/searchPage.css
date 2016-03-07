@@ -45,11 +45,13 @@
   margin-top: 18px;
   width: 49px;
   float: right;
-  margin-right: 45px;}
+  margin-right: 45px;
+  font-size: 18px;
+}
+
 .nextOrPreviousContainer{
-  height: 214px;
-  vertical-align: middle;
   margin-top: 259px;
+  position: absolute;
 }
 .nextContainer{
   text-align: left;
@@ -57,6 +59,17 @@
 .previousContainer{
   text-align: right;
 }
+.cityAndDistanceContainer{
+  margin-top: 64px;
+  background-color: rgba(244, 221, 0, 1);
+  padding: 10px 0;
+  margin: 31px 37px;
+  border-radius: 4px;
+}
+.cityOrDistSearchPage{
+  color: rgba(231, 82, 69, 0.95);
+}
+
 
 #pseudoSearchParagraphe{
   text-align: center;
@@ -67,7 +80,9 @@
 .TagsContainer{
   text-align: left;
   margin-left: 17px;
+  padding-top: 72px;
 }
+
 
 .bioContainer{
   text-align: left;

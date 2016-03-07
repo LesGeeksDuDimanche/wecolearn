@@ -1,10 +1,30 @@
+Template.searchPage.rendered = function() {
+      Meteor.subscribe("profil", function() {
+        if (Session.get('currentProfil') && Session.get('currentProfil') !== '') {
+        Meteor.myFunctions.loadProfil(Session.get('currentProfil'));
+        Session.set('SearchCount', 0);
+        $('#previousSearch').hide();
+        $('#contact').show();
+
+        var profils = Session.get('currentSearch');
+        console.log(profils[1]);
+        if (!profils[1]) {
+          $('#nextSearch').hide();
+        }
+        Meteor.searchPageFunctions.setDistance();
+        } else {
+        $('#noMatchMessage').show();
+        }
+      });
+};
 
 
 Template.Search.events({
 
   'submit form': function(event){
       event.preventDefault();
-      var userPseudo = Profil.find({userId: Meteor.userId()}).pseudo;
+      var userId = Meteor.userId();
+      var userPseudo = Profil.find({userId: userId}).pseudo;
       var searchTag = $('[name=searchInput]').val();
       var searchCity = $('[name=searchCity]').val();
       var profil;
@@ -12,15 +32,17 @@ Template.Search.events({
       console.log(searchCity + searchTag);
       var tags = "";
       var profilId;
-      if (Profil.findOne({city: searchCity}) && (ProfilTags.findOne({tag: searchTag}))){
+      if ((Profil.findOne({city: searchCity}).userId !== userId) && (ProfilTags.findOne({tag: searchTag}).userId !== userId)){
         Profil.find({city: searchCity}).forEach(function (object) {
-          if (ProfilTags.findOne({$and: [{userId: object.userId}, {tag: searchTag}]}) && (object.userId !== Meteor.userId())) {
+          if (ProfilTags.findOne({$and: [{userId: object.userId}, {tag: searchTag}]}) && (object.userId !== userId)) {
               profilId = ProfilTags.findOne({$and: [{userId: object.userId}, {tag: searchTag}]}).userId;
+              console.log("Template.Search.events", "profilId", profilId);
               profils.push(Profil.findOne({userId: profilId}));
           }
         });
         profil = profils[0];
-
+        // console.log("Template.Search.events", "profils", profils);
+        if (profil !== undefined) {
         ProfilTags.find({userId: profil.userId}).forEach(function(tagObject) {
             console.log("currentprofilId " + profil.userId);
             console.log(tagObject.userId);
@@ -28,11 +50,12 @@ Template.Search.events({
             tags += tagObject.tag + " ";
         });
         console.log("first search answer " + profil.pseudo);
-
         Session.set('currentProfil', profil);
         Session.set('currentSearch', profils );
-        // Session.set('currentTagSearch', tags);
         $('#noMatchMessage').hide();
+      } else {
+        $('#noMatchMessage').show();
+      }
       } else {
       console.log('no match !');
 
@@ -58,7 +81,7 @@ Template.Search.events({
 
 // OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
-       $('#noMatchMessage').show();
+      $('#noMatchMessage').show();
 
 
       }
@@ -68,8 +91,8 @@ Template.Search.events({
 
         Meteor.myFunctions.loadProfil(profil, tags);
         Session.set('SearchCount', 1);
-       }
-      },
+      }
+  },
   'input #searchInput': function (event) {
     Meteor.myFunctions.clearSuggestions('.tagDiv');
     var input = event.currentTarget.value;
@@ -94,8 +117,10 @@ Template.Search.events({
      $('#searchInput').keydown(function (e) {
        if ($('.tagDiv')) {
          var key = e.which || e.keyCode;
-         if (key === 40) {
-
+         if (key === 40 ) {
+            Meteor.searchFunctions.keyHover('#tagSuggestionsContainer', 'down');
+         } else if (key === 38) {
+           Meteor.searchFunctions.keyHover('#tagSuggestionsContainer', 'up' );
          }
        }
      });
@@ -106,7 +131,7 @@ Template.Search.events({
      console.log("input searchCity", input);
 
      if (input !== "") {
-       Meteor.myFunctions.findCityAC(input);
+       Meteor.myFunctions.findCityAC(input, '#searchCity');
      }
     //  console.log(results);
 
@@ -118,22 +143,7 @@ Template.Search.events({
 
 
 
-Template.searchPage.rendered = function() {
-      Meteor.subscribe("profil", function() {
-        if (Session.get('currentProfil') && Session.get('currentProfil') !== '') {
-        Meteor.myFunctions.loadProfil(Session.get('currentProfil'));
-        Session.set('SearchCount', 0);
-        $('#previousSearch').hide();
-        var profils = Session.get('currentSearch');
-        console.log(profils[1]);
-          if (!profils[1]) {
-            $('#nextSearch').hide();
-          }
-        } else {
-        $('#noMatchMessage').show();
-        }
-      });
-};
+
 
 
 
@@ -144,13 +154,15 @@ Template.searchPage.events({
       var profils = Session.get('currentSearch');
       if(profils[count + 1]) {
           count = count + 1;
+          Session.set('SearchCount', count);
           Session.set('currentProfil', profils[count]);
           console.log(profils[count].pseudo);
           Meteor.myFunctions.loadProfil(profils[count]);
-      }
-      else {
-        $('#nextSearch').hide();
-
+          Meteor.searchPageFunctions.setDistance();
+          if(!profils[count+2]) {
+            console.log("click #nextSearch +2 not existent");
+            $('#nextSearch').hide();
+          }
       }
       Session.set('SearchCount', count);
       $('#previousSearch').show();
@@ -159,27 +171,32 @@ Template.searchPage.events({
     "click #previousSearch" : function() {
       var count = Session.get('SearchCount');
       console.log("count : " + count);
-      if (count === 0) {
-        $('#previousSearch').hide();
-      } else {
-      count = count - 1;
-      Session.set('SearchCount', count);
-      var profils = Session.get('currentSearch');
-      if(profils[count]) {
-          Session.set('currentProfil', profils[count]);
-          console.log(profils[count].pseudo);
-          Meteor.myFunctions.loadProfil(profils[count]);
+      if (count !== 0) {
+
+        if (count === 1) {
+          $('#previousSearch').hide();
+          console.log("click #previousSearch hide");
+        }
+        $('#nextSearch').show();
+        count = count - 1;
+        Session.set('SearchCount', count);
+        var profils = Session.get('currentSearch');
+        if(profils[count]) {
+            Session.set('currentProfil', profils[count]);
+            console.log(profils[count].pseudo);
+            Meteor.myFunctions.loadProfil(profils[count]);
+            Meteor.searchPageFunctions.setDistance();
+        }
+        else if (Session.get('currentProfil')){
+          console.log(Session.get('currentProfil'));
+          loadProfil(Session.get('currentProfil'));
+        }
       }
-      else if (Session.get('currentProfil')){
-        console.log(Session.get('currentProfil'));
-        loadProfil(Session.get('currentProfil'));
-      }
-      }
-      $('#nextSearch').show();
     },
 
     "click #contact" : function() {
       Router.go('MessagesPage');
+      Meteor.myFunctions.loadMessagePage(Session.get("pseudoValue"));
     }
 });
 
@@ -188,14 +205,21 @@ Template.searchPage.events({
 
 Template.searchPage.helpers({
 
+  city: function () {
+    return Session.get("cityValue");
+  },
+  distance: function() {
+    return Session.get("distance");
+  }
+});
+
+Template.searchResults.helpers({
+
   pseudo: function () {
     return Session.get("pseudoValue");
   },
   photo: function () {
     return Session.get("photoValue");
-  },
-  city: function () {
-    return Session.get("cityValue");
   },
   Tags: function () {
     return Session.get("tagsValue");
@@ -203,4 +227,5 @@ Template.searchPage.helpers({
   Bio: function () {
     return Session.get("bioValue");
   }
+
 });

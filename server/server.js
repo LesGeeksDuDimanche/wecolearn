@@ -10,22 +10,21 @@ Future = Npm.require('fibers/future');
 
 
       Meteor.methods({
-        'findCityACServerSide': function(inputedLetters) {
+        'ASyncAjaxRequest': function(APIRequest) {
             var fut = new Future();
             setTimeout(
                 Meteor.bindEnvironment(
                     function() {
-                      Meteor.http.post("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+inputedLetters+"&types=%28cities%29&language=fr&key=AIzaSyDOqNgcJgVCMV_KJpYlWDekJHwDmEtZr_w", function(err, result) {
+                      Meteor.http.post(APIRequest, function(err, result) {
                         fut.return(result);
                       });
-
                     },
                     function(exception) {
                         console.log("Exception : ", exception);
                         fut.throw(new Error("Async function throw exception"));
                     }
                 ),
-                50
+                100
             );
             return fut.wait();
         }

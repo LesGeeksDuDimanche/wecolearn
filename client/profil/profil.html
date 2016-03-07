@@ -4,6 +4,7 @@
 <template name="ProfilPage">
   <div class="container">
     {{> header}}
+    <form class="profilForm " action="">
     <div class="row MainContainer">
 
     <div class="col-sm-3 profilBorder" id="leftProfilBorder"></div>
@@ -25,7 +26,6 @@
       </div>
     </div>
     <div class="col-sm-2 profilContainer" id="profilContainer">
-    <form class="profilForm " action="">
 
 
       <div class="miniProfilContainers profilCategoryContainer profilPhotoContainer">
@@ -45,7 +45,10 @@
       <div class="miniProfilContainers profilCategoryContainer profilCityContainer"><p class="profilCategory profilCity"> {{city}} </p>
         <div id="geolocationChoiceContainer"><input id="geolocationChoice" type="checkbox" name="geolocalize">
         Use geolocation for more precise location.</div>
-        <input id="profilCityEdit" type="text" name="city" placeholder="{{city}}">
+        <div id="profilCityEditContainer">
+        <input id="profilCityEdit" type="text" name="city" placeholder="{{city}}" autocomplete="off">
+        {{> citySuggestions}}
+        </div>
         <div class="validateProfilChange profilChangeChoice"><a id="profilCityEditSubmit" >valider</a></div>
         <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilCityEditSubmit" >annuler</a></div>
 
@@ -62,14 +65,10 @@
       </div>
 
       <div class="miniProfilContainers profilCategoryContainer profilBioContainer"><p class="profilCategory" id="profilBio"> {{Bio}} </p>
-        <textarea id="profilBioEdit" type="text" name="biography" rows="5" cols="30" value="{{Bio}}"></textarea>
+        <textarea id="profilBioEdit" type="text" name="biography" rows="5" cols="35" value="{{Bio}}"></textarea>
         <div class="validateProfilChange profilChangeChoice"><a id="profilBioEditSubmit" >valider</a></div>
         <div class="cancelProfilChange profilChangeChoice"><a id="cancelProfilBioEditSubmit" >annuler</a></div>
       </div>
-      <div class="miniProfilContainers">
-        <input id="submitProfilEditForm" type="submit" value="envoyer">
-      </div>
-    </form>
     </div>
     <div class="col-sm-2 profilContainer" id="profilModifyContainer">
       <div class="miniProfilContainers editProfilLinkContainer profilPhotoContainer" id="editPhotoContainer">
@@ -89,9 +88,11 @@
       </div>
     </div>
     <div class="col-sm-3 profilBorder" id="rightProfilBorder"></div>
-
-    <button id="editFirstTime">first Edit</button>
+    <div class="miniProfilContainers" id="sendAnswerForm">
+      <input id="submitProfilEditForm" type="submit" value="envoyer">
     </div>
+    </div>
+    </form>
   </div>
 </template>
 

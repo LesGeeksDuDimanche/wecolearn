@@ -1,3 +1,18 @@
+Template.ProfilPage.rendered = function() {
+      Meteor.subscribe("profil", function() {
+        if (Profil.findOne({userId: Meteor.userId()})) {
+          Meteor.myFunctions.loadProfil(Profil.findOne({userId: Meteor.userId()}));
+          $('#editFirstTime').hide();
+          $('#submitProfilEditForm').hide();
+        } else {
+          $('#profilContainer').hide();
+          Meteor.myFunctions.showProfilSubmitForm();
+
+        }
+        Meteor.myFunctions.checkIfNeedsScroll('#profilTags', 160);
+        Meteor.myFunctions.checkCheckBoxAccorgingToDB();
+      });
+};
 
 Template.ProfilPage.events({
 
@@ -37,12 +52,12 @@ Template.ProfilPage.events({
             ProfilCreated = true;
           }
       });
-      var localization;
-      if (Session.get("AuthorizeGeolocation") === 1) {
-        localization = {'authorization' : 0, 'localization' : Session.get("localization")};
-      } else {
-        localization = {'authorization' : 0, 'localization' : 0};
-      }
+
+
+
+      // else {
+      //   localization = {'authorization' : 0, 'localization' : 0};
+      // }
 
       if(userId !== null && ProfilCreated === false) {
 
@@ -53,11 +68,15 @@ Template.ProfilPage.events({
           photo: photo,
           city: city,
           Biography: bio,
-          localization: localization,
+          localization: 0,
           createdAt: new Date()
         });
 
-
+        if (Session.get("AuthorizeGeolocation") === 1) {
+          Meteor.myFunctions.localizationProfilEdit();
+        } else {
+          Meteor.profileFunctions.getGeolocalizationFromCity(city);
+        }
 
       }
 
@@ -100,9 +119,6 @@ Template.ProfilPage.events({
         }
       });
 
-    },
-    "click #editFirstTime" : function() {
-        Meteor.myFunctions.showProfilSubmitForm();
     },
     'click #geolocationChoice' : function(e) {
       console.log("message");
@@ -154,6 +170,7 @@ Template.ProfilPage.events({
         $('.profilCity').hide();
         $('#editCity').hide();
         $('#profilCityEdit').show();
+        $('#profilCityEditContainer').show();
         $('#geolocationChoiceContainer').show();
         $('#profilCityEditSubmit').show();
         $('#cancelProfilCityEditSubmit').show();
@@ -162,6 +179,7 @@ Template.ProfilPage.events({
 
         Meteor.myFunctions.cityProfilEdit();
 
+
     },
     "click #cancelProfilCityEditSubmit": function () {
 
@@ -169,14 +187,17 @@ Template.ProfilPage.events({
 
     },
     //Auto-complete
-    "input #profilCityEdit" : function(event) {
+      "input #profilCityEdit" : function(event) {
+        if (Session.get("AuthorizeGeolocation") === 0) {
+          Meteor.myFunctions.clearSuggestions('.cityDiv');
+          var input = event.currentTarget.value;
+          console.log("input searchCity", input);
+          if (input !== "") {
+            Meteor.myFunctions.findCityAC(input, '#profilCityEdit');
+          }
+        }
+      },
 
-      var input = event.currentTarget.value;
-
-      Meteor.myFunctions.findCityAC(input);
-
-
-    },
 // Edit Photo
 
     "click #editPhoto" : function (event) {
@@ -264,27 +285,10 @@ Template.ProfilPage.events({
 
 
 
-  Template.ProfilPage.rendered = function() {
-        Meteor.subscribe("profil", function() {
-          if (Profil.findOne({userId: Meteor.userId()})) {
-            Meteor.myFunctions.loadProfil(Profil.findOne({userId: Meteor.userId()}));
-            $('#editFirstTime').hide();
-            $('#submitProfilEditForm').hide();
-          } else {
-            $('#profilContainer').hide();
-            $('#editFirstTime').show();
-          }
-          Meteor.myFunctions.checkIfNeedsScroll('#profilTags', 160);
-          Meteor.myFunctions.checkCheckBoxAccorgingToDB();
-        });
-  };
 
 
 
   Template.ProfilPage.helpers({
-    hiddenForm: function () {
-      return Session.get("hiddenform");
-    },
     pseudo: function () {
       return Session.get("pseudoValue");
     },
