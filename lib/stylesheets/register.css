@@ -7,6 +7,10 @@
 .register{
   display: inline-block;
 }
+.registerMessage p{
+  padding: 34px 0px;
+  background-color: white;
+}
 .registerTitleContainer{
   padding: 42px 82px;
   background-color: rgba(244,201,0,1);
@@ -18,4 +22,13 @@
 .registerCategoryDiv{
   height: 46px;
   padding: 19px;
+  font-size: 19px;
+  color: white;
+}
+#verifyEmailContainer{
+  display: none;
+}
+
+#registerSubmit{
+  margin: 39px 3px;
 }

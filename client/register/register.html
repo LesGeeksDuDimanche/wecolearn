@@ -8,7 +8,13 @@
 <template name="registerPage">
   <div class="container">
     {{> header}}
-    <div class="registerContainer">
+    {{> register}}
+    {{> verifyEmail}}
+  </div>
+</template>
+
+<template name="register">
+    <div class="registerContainer" id="registerFormContainer">
       <div class="registerTitleContainer">
         <h2>Inscription</h2>
       </div>
@@ -17,18 +23,34 @@
         <p>Email: </p>
       </div>
       <div>
-        <input type="email" name="email">
+        <input type="email" name="email" required="true" >
       </div>
+      <div class="registerCategoryDiv">
+        <p>Vérification Email: </p>
+      </div>
+      <div>
+        <input type="email" name="doubleEmail" required="true">
+      </div>
+
         <div class="registerCategoryDiv">
         <p>Mot de passe: </p>
       </div>
         <div>
-          <input type="password" name="password">
+          <input type="password" name="password" required="true">
         </div>
         <div>
-        <input type="submit" value="Register">
+        <input id="registerSubmit" type="submit" value="Register">
         </div>
     </form>
+    </div>
+</template>
+
+<template name="verifyEmail">
+  <div class="registerContainer" id="verifyEmailContainer">
+    <div class="registerMessage">
+      <p>
+        Un email vous a été envoyé afin de valider votre adresse email. Merci de vérifier votre courrier électronique.
+      </p>
     </div>
   </div>
 </template>

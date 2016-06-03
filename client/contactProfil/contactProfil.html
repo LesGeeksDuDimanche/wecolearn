@@ -6,7 +6,9 @@
     <div class="row MainContainer" id="searchMainContainer">
       <div class="col-sm-3 searchBorder" id="leftSearchBorder" ></div>
         {{> searchResults}}
-      <div class="col-sm-3 searchBorder" id="rightSearchBorder" ></div>
+      <div class="col-sm-3 searchBorder" id="rightSearchBorder" >
+        <div class="closeContactProfilPage"><a href="{{pathFor route='MessagesPage'}}">close</a></div>
+      </div>
     </div>
   </div>
 </template>
